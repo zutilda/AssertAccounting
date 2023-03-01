@@ -34,14 +34,7 @@ namespace AssertAccounting
                 MessageBox.Show("Кнопка сработала");
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Number.Text = "";
-            Password.Text = "";
-            Code.Text = "";
-        }
-
+               
         private void Number_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -50,6 +43,15 @@ namespace AssertAccounting
                 Password.IsEnabled = true;
                 Password.Focus();
             }
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Number.Text = "";
+            Password.Text = "";
+            Code.Text = "";
+            Password.IsEnabled = false;
+            Code.IsEnabled = false;
         }
     }
 }

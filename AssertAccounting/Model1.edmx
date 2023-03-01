@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище CRM7Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "41CRM7.dbo.Employee" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="idEmployee" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="surname" />
+            <PropertyRef Name="role" />
+            <PropertyRef Name="phone" />
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="idEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="25" />
+          <Property Name="role" Type="int" Nullable="false" />
+          <Property Name="phone" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "41CRM7.dbo.Role" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="idRole" />
+            <PropertyRef Name="nameRole" />
+          </Key>
+          <Property Name="idRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameRole" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Хранилище CRM7ModelContainer">
+          <EntitySet Name="Employee" EntityType="Self.Employee" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Employee].[idEmployee] AS [idEmployee], 
+    [Employee].[name] AS [name], 
+    [Employee].[surname] AS [surname], 
+    [Employee].[patronymic] AS [patronymic], 
+    [Employee].[role] AS [role], 
+    [Employee].[phone] AS [phone], 
+    [Employee].[password] AS [password]
+    FROM [dbo].[Employee] AS [Employee]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Role" EntityType="Self.Role" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Role].[idRole] AS [idRole], 
+    [Role].[nameRole] AS [nameRole]
+    FROM [dbo].[Role] AS [Role]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CRM7Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="idEmployee" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="surname" />
+            <PropertyRef Name="role" />
+            <PropertyRef Name="phone" />
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="idEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="patronymic" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="role" Type="Int32" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="idRole" />
+            <PropertyRef Name="nameRole" />
+          </Key>
+          <Property Name="idRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CRM7ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="CRM7Model.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="idEmployee" ColumnName="idEmployee" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="CRM7Model.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+                <ScalarProperty Name="nameRole" ColumnName="nameRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
