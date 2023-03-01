@@ -4,9 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssertAccounting"
-        mc:Ignorable="d"
-        Title="Авторизация" Height="450" Width="800">
+        mc:Ignorable="d" MaxHeight="450" MaxWidth="800"
+        Title="Авторизация" MinHeight="450" MinWidth="800">
     <Grid>
-        
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource Header}" FontSize="28" Margin="80,0,100,0">Телеком Нева Связь</TextBlock>
+                <Image HorizontalAlignment="Right" Height="150" Margin="180,0,0,0" Source="/images/Лого ТНС.jpg"/>
+            </StackPanel>            
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Margin="0, 0, 10, 0">Номер</TextBlock>
+                    <TextBox Width="200" Height="30"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock  Margin="0, 0, 5, 0">Пароль</TextBlock>
+                    <TextBox Width="200" Height="30"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Margin="0, 0, 32, 0">Код</TextBlock>
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBox Width="150" Height="30"></TextBox>
+                        <Image HorizontalAlignment="Right" Height="30"  Margin="5" Source="/images/На авторизацию_Обновление кода.jpg" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Width="100" Height="30" Margin="5" Content="Отмена"/>
+                <Button Width="100" Height="30" Margin="5" Content="Вход"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
