@@ -23,6 +23,8 @@ namespace AssertAccounting
         public MainWindow()
         {
             InitializeComponent();
+            Password.IsEnabled = false;
+            Code.IsEnabled = false;
         }
              
         private void Button_KeyDown(object sender, KeyEventArgs e)
@@ -46,6 +48,7 @@ namespace AssertAccounting
             {
                 MessageBox.Show("Кнопка сработала");
                 Password.IsEnabled = true;
+                Password.Focus();
             }
         }
     }
