@@ -15,23 +15,23 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Margin="0, 0, 10, 0">Номер</TextBlock>
-                    <TextBox Width="200" Height="30"></TextBox>
+                    <TextBox Name="Number" Width="200" Height="30" KeyDown="Number_KeyDown"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock  Margin="0, 0, 5, 0">Пароль</TextBlock>
-                    <TextBox Width="200" Height="30"></TextBox>
+                    <TextBox Name="Password" Width="200" Height="30" IsEnabled="False"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Margin="0, 0, 32, 0">Код</TextBlock>
                     <StackPanel Orientation="Horizontal" >
-                        <TextBox Width="150" Height="30"></TextBox>
+                        <TextBox Name="Code" Width="150" Height="30"></TextBox>
                         <Image HorizontalAlignment="Right" Height="30"  Margin="5" Source="/images/На авторизацию_Обновление кода.jpg" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Width="100" Height="30" Margin="5" Content="Отмена"/>
-                <Button Width="100" Height="30" Margin="5" Content="Вход"/>
+                <Button Width="100" Height="30" Margin="5" Content="Отмена" Click="Button_Click"/>
+                <Button Width="100" Height="30" Margin="5" Content="Вход" KeyDown="Button_KeyDown"/>
             </StackPanel>
         </StackPanel>
     </Grid>

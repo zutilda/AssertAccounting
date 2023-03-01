@@ -24,5 +24,29 @@ namespace AssertAccounting
         {
             InitializeComponent();
         }
+             
+        private void Button_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                MessageBox.Show("Кнопка сработала");
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Number.Text = "";
+            Password.Text = "";
+            Code.Text = "";
+        }
+
+        private void Number_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                MessageBox.Show("Кнопка сработала");
+                Password.IsEnabled = true;
+            }
+        }
     }
 }
