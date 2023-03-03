@@ -45,6 +45,8 @@ namespace AssertAccounting
             {
                 Timer.Stop();
                 Time.Text = "";
+                Code.IsEnabled = false;
+                Code.Clear();
             }
         }
         private void Number_KeyDown(object sender, KeyEventArgs e)
@@ -175,6 +177,8 @@ namespace AssertAccounting
             }
             MessageBox.Show(result, "Код", MessageBoxButton.OK);
             captha = result;
+            Timer.Start();
+            time = 10;
         }
 
         private void Entrance_Click(object sender, RoutedEventArgs e)
@@ -187,8 +191,7 @@ namespace AssertAccounting
             else 
             {
                 MessageBox.Show("Вы неправильно ввели код!");
-                Timer.Start();
-                time = 10;
+                Code.Clear();
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
