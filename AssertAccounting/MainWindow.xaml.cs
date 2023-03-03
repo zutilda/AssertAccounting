@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +21,7 @@ namespace AssertAccounting
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Entities DB = new Entities();        
         public MainWindow()
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace AssertAccounting
         {
             if (e.Key == Key.Enter)
             {
-                MessageBox.Show("Кнопка сработала");
+               
             }
         }
                
@@ -39,19 +41,80 @@ namespace AssertAccounting
         {
             if (e.Key == Key.Enter)
             {
-                MessageBox.Show("Кнопка сработала");
-                Password.IsEnabled = true;
-                Password.Focus();
+                if (Number.Text != "")
+                {
+                    try
+                    {
+                        List<Employee> employees = DB.Employee.Where(x => x.phone == Number.Text).ToList();
+                        if (employees.Count != 0)
+                        {
+                            Password.IsEnabled = true;
+                            Password.Focus();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Код не найден");
+                            return;
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        MessageBox.Show("Что-то пошло не по плану");
+                        return;
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Введите номер");
+                    return;
+                }
             }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Number.Text = "";
-            Password.Text = "";
+            Password.Password = "";
             Code.Text = "";
             Password.IsEnabled = false;
             Code.IsEnabled = false;
+        }
+
+        private void Password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (Password.Password != "")
+                {
+                    try
+                    {
+                        List<Employee> employees = DB.Employee.Where(x => x.phone == Number.Text && x.password == Password.Password).ToList();
+
+                        if (employees.Count != 0)
+                        {
+                            Code.IsEnabled = true;
+                            Code.Focus();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пароль не найден");
+                            return;
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        MessageBox.Show("Что-то пошло не по плану");
+                        return;
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Введите номер");
+                    return;
+                }
+            }
         }
     }
 }

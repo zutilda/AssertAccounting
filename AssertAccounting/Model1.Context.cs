@@ -25,6 +25,7 @@ namespace AssertAccounting
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Role> Role { get; set; }
     }

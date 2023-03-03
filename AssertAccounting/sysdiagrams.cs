@@ -12,17 +12,12 @@ namespace AssertAccounting
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class sysdiagrams
     {
-        public int idEmployee { get; set; }
-        public string surname { get; set; }
         public string name { get; set; }
-        public string patronymic { get; set; }
-        public int role { get; set; }
-        public string phone { get; set; }
-        public string password { get; set; }
-        public string photo { get; set; }
-    
-        public virtual Role Role1 { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

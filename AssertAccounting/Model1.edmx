@@ -4,113 +4,151 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище CRM7Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "41CRM7.dbo.Employee" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+    <Schema Namespace="Хранилище CRM7Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="idEmployee" />
-            <PropertyRef Name="name" />
-            <PropertyRef Name="surname" />
-            <PropertyRef Name="role" />
-            <PropertyRef Name="phone" />
-            <PropertyRef Name="password" />
           </Key>
           <Property Name="idEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="surname" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="patronymic" Type="nvarchar" MaxLength="25" />
           <Property Name="role" Type="int" Nullable="false" />
           <Property Name="phone" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="photo" Type="nvarchar(max)" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "41CRM7.dbo.Role" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="idRole" />
-            <PropertyRef Name="nameRole" />
           </Key>
           <Property Name="idRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nameRole" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Employee_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="idRole" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище CRM7ModelContainer">
-          <EntitySet Name="Employee" EntityType="Self.Employee" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Employee].[idEmployee] AS [idEmployee], 
-    [Employee].[name] AS [name], 
-    [Employee].[surname] AS [surname], 
-    [Employee].[patronymic] AS [patronymic], 
-    [Employee].[role] AS [role], 
-    [Employee].[phone] AS [phone], 
-    [Employee].[password] AS [password]
-    FROM [dbo].[Employee] AS [Employee]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Role" EntityType="Self.Role" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Role].[idRole] AS [idRole], 
-    [Role].[nameRole] AS [nameRole]
-    FROM [dbo].[Role] AS [Role]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CRM7Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="CRM7Model.sysdiagrams" />
+          <EntitySet Name="Employee" EntityType="CRM7Model.Employee" />
+          <EntitySet Name="Role" EntityType="CRM7Model.Role" />
+          <AssociationSet Name="FK_Employee_Role" Association="CRM7Model.FK_Employee_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="idEmployee" />
-            <PropertyRef Name="name" />
-            <PropertyRef Name="surname" />
-            <PropertyRef Name="role" />
-            <PropertyRef Name="phone" />
-            <PropertyRef Name="password" />
           </Key>
           <Property Name="idEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="surname" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="patronymic" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="role" Type="Int32" Nullable="false" />
-          <Property Name="phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role1" Relationship="CRM7Model.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="idRole" />
-            <PropertyRef Name="nameRole" />
           </Key>
           <Property Name="idRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nameRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nameRole" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="CRM7Model.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
         </EntityType>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Employee" EntityType="Self.Employee" />
-          <EntitySet Name="Role" EntityType="Self.Role" />
-        </EntityContainer>
+        <Association Name="FK_Employee_Role">
+          <End Type="CRM7Model.Role" Role="Role" Multiplicity="1" />
+          <End Type="CRM7Model.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="idRole" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище CRM7ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CRM7Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Employee">
             <EntityTypeMapping TypeName="CRM7Model.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="idEmployee" ColumnName="idEmployee" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
-                <ScalarProperty Name="role" ColumnName="role" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="idEmployee" ColumnName="idEmployee" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="CRM7Model.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="idRole" ColumnName="idRole" />
                 <ScalarProperty Name="nameRole" ColumnName="nameRole" />
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
