@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace AssertAccounting
@@ -45,7 +36,6 @@ namespace AssertAccounting
             {
                 Timer.Stop();
                 Time.Text = "";
-                Code.IsEnabled = false;
                 Code.Clear();
             }
         }
@@ -137,7 +127,7 @@ namespace AssertAccounting
             Random rand = new Random();
             string result = "";
             char c = '0';
-          
+
             for (int i = 0; i < 9; i++)
             {
                 switch (rand.Next(0, 3))
@@ -186,9 +176,12 @@ namespace AssertAccounting
             if (captha == Code.Text)
             {
                 Employee employees = DB.Employee.FirstOrDefault(x => x.phone == Number.Text && x.role == x.Role1.idRole);
-                MessageBox.Show(employees.Role1.nameRole);                
+                MessageBox.Show(employees.Role1.nameRole);
+                Timer.Stop();
+                Time.Text = "";
+                Cancel_Click(sender, e);
             }
-            else 
+            else
             {
                 MessageBox.Show("Вы неправильно ввели код!");
                 Code.Clear();
