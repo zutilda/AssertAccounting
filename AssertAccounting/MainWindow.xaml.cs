@@ -25,6 +25,8 @@ namespace AssertAccounting
             Timer = new DispatcherTimer();
             Timer.Tick += new EventHandler(Timer_Tick);
             Timer.Interval = new TimeSpan(0, 0, 1);
+            GenereteCode.IsEnabled = false;
+            Entrance.IsEnabled = false;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -91,6 +93,7 @@ namespace AssertAccounting
                             Number.IsEnabled = false;
                             GetCode();
                             Code.Focus();
+                            Entrance.IsEnabled = true;
                         }
                         else
                         {
@@ -120,6 +123,8 @@ namespace AssertAccounting
             Number.IsEnabled = true;
             Password.IsEnabled = false;
             Code.IsEnabled = false;
+            GenereteCode.IsEnabled = false;
+            Entrance.IsEnabled= false;
         }
         private void GetCode()
         {
@@ -168,9 +173,10 @@ namespace AssertAccounting
             {
                 MessageBox.Show("Вы неправильно ввели код!");
                 Code.Clear();
+                GenereteCode.IsEnabled = true;
             }
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void GenereteCode_Click(object sender, RoutedEventArgs e)
         {
             Code.Clear();
             Code.IsEnabled = true;
@@ -178,6 +184,11 @@ namespace AssertAccounting
             Number.IsEnabled = false;
             GetCode();
             Code.Focus();
+        }
+
+        private void Entrance_KeyDown(object sender, KeyEventArgs e)
+        {
+            Entrance_Click(sender, e);
         }
     }
 }
