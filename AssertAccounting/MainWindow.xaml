@@ -25,13 +25,18 @@
                     <TextBlock Margin="0, 0, 32, 0">Код</TextBlock>
                     <StackPanel Orientation="Horizontal" >
                         <TextBox Name="Code" Width="150" Height="30"></TextBox>
-                        <Image HorizontalAlignment="Right" Height="30"  Margin="5" Source="/images/На авторизацию_Обновление кода.jpg" />
+                        <Button Background="White" BorderBrush="White" Click="Button_Click">
+                            <Image HorizontalAlignment="Right" Height="30" Source="/images/На авторизацию_Обновление кода.jpg"/>
+                        </Button>                       
                     </StackPanel>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Name="Time" Height="30"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Name="Cancel" Width="100" Height="30" Margin="5" Content="Отмена" Click="Cancel_Click"/>
-                <Button Name="Entrance" Width="100" Height="30" Margin="5" Content="Вход" KeyDown="Button_KeyDown"/>
+                <Button Name="Entrance" Width="100" Height="30" Margin="5" Content="Вход" Click="Entrance_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>
