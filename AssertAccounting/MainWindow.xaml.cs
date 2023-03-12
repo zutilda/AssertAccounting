@@ -13,10 +13,10 @@ namespace AssertAccounting
     /// </summary>   
     public partial class MainWindow : Window
     {
-        public static Entities DB = new Entities();
-        string captha;
-        private DispatcherTimer Timer;
-        private int time;
+        public static Entities DB = new Entities();       
+        public static string CAPTHA;
+        public static  DispatcherTimer Timer;
+        public static int time;
         public MainWindow()
         {
             InitializeComponent();
@@ -90,11 +90,12 @@ namespace AssertAccounting
                         {
                             Code.IsEnabled = true;
                             Password.IsEnabled = false;
-                            Number.IsEnabled = false;
-                            GetCode();
+                            Number.IsEnabled = false; 
+                            Captha captha = new Captha();
+                            captha.ShowDialog();
                             Code.Focus();
                             Entrance.IsEnabled = true;
-                        }
+                         }
                         else
                         {
                             MessageBox.Show("Пароль не найден");
@@ -126,42 +127,10 @@ namespace AssertAccounting
             GenereteCode.IsEnabled = false;
             Entrance.IsEnabled= false;
         }
-        private void GetCode()
-        {
-
-            Random rand = new Random();
-            string result = "";
-            char c = '0';
-
-            for (int i = 0; i < 9; i++)
-            {
-                switch (rand.Next(0, 4))
-                {
-                    case 0:
-                        c = (char)rand.Next(49, 58);
-                        break;
-                    case 1:
-                        c = (char)rand.Next(65, 91);
-                        break;
-                    case 2:
-                        c = (char)rand.Next(97, 123);
-                        break;
-                    case 3:
-                        c = (char)rand.Next(32, 47);
-                        break;
-                }
-                result += c;
-                       
-            }
-            MessageBox.Show(result, "Код", MessageBoxButton.OK);
-            captha = result;
-            Timer.Start();
-            time = 10;
-        }
-
+     
         private void Entrance_Click(object sender, RoutedEventArgs e)
         {
-            if (captha == Code.Text)
+            if (CAPTHA == Code.Text)
             {
                 Employee employees = DB.Employee.FirstOrDefault(x => x.phone == Number.Text && x.role == x.Role1.idRole);
                 MessageBox.Show(employees.Role1.nameRole);
@@ -182,13 +151,32 @@ namespace AssertAccounting
             Code.IsEnabled = true;
             Password.IsEnabled = false;
             Number.IsEnabled = false;
-            GetCode();
+
             Code.Focus();
         }
 
         private void Entrance_KeyDown(object sender, KeyEventArgs e)
         {
-            Entrance_Click(sender, e);
+            
+        }
+
+        private void StackPanel_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.Key == Key.Enter)
+            {
+                if (Number.Text != "")
+                {
+
+                    if (Password.Password != "")
+                    {
+                        if (Code.Text != "")
+                        {
+                            Entrance_Click(sender, e);
+                        }
+                    }
+                }
+            }
         }
     }
 }
