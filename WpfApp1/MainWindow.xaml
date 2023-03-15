@@ -8,22 +8,34 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <StackPanel Orientation="Vertical">
-                <Image/>
-                <Button x:Name="Sub"/>
-                <Button />
-                <Button/>
-                <Button/>
-                <Button/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <Image Source="/images/Лого ТНС.jpg"/>
+                <Button x:Name="Sub" Content="Абоненты"/>
+                <Button x:Name="Controls" >
+                    <StackPanel >
+                        <TextBlock TextWrapping="Wrap">Управление оборудованием</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="Assets" Content="Активы"/>
+                <Button x:Name="Brilling" Content="Бриллинг"/>
+                <Button x:Name="Support" >
+                    <StackPanel >
+                        <TextBlock TextWrapping="Wrap">Поддержка пользователей</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="CRM" Content="CRM"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+               
             </StackPanel>
         </Grid>
 
         <Grid Grid.Column="1">
-            <TextBlock>Абоненты ТНС</TextBlock>
+            <TextBlock Style="{StaticResource Header}">Абоненты ТНС</TextBlock>
         </Grid>
     </Grid>
 </Window>
