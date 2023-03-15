@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b20c898579a44d7490bfe540ad6131ea" Name="Diagram1">
+        <EntityTypeShape EntityType="CRM7Model.ApplicationCRM" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.ConectedService" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.ContractType" Width="1.5" PointX="1.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.District" Width="1.5" PointX="1.5" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.Employee" Width="1.5" PointX="11" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.GatewayPhone" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.Gender" Width="1.5" PointX="1.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.InstallDevice" Width="1.5" PointX="6" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.KindServise" Width="1.5" PointX="3.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.PassportInfo" Width="1.5" PointX="1.5" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.PortType" Width="1.5" PointX="3.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.Role" Width="1.5" PointX="8.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.Service" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.Status" Width="1.5" PointX="3.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.Subsriber" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.TypeDevice" Width="1.5" PointX="3.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.TypeHouse" Width="1.5" PointX="1.5" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.TypeOfProblem" Width="1.5" PointX="3.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.TypeService" Width="1.5" PointX="3.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.Adress" Width="1.5" PointX="8.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRM7Model.ListPhone" Width="1.5" PointX="8.25" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="CRM7Model.FK_ApplicationCRM_KindServise" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_ApplicationCRM_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_ApplicationCRM_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_ApplicationCRM_TypeDevice" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_ApplicationCRM_TypeOfProblem" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_ApplicationCRM_TypeService" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_ConectedService_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_ConectedService_Subsriber" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_Subsriber_ContractType" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_Adress_District" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_District_TypeHouse" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_Subsriber_District" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_Employee_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_ListPhone_GatewayPhone" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_Subsriber_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_Adress_InstallDevice" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_InstallDevice_PortType" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_InstallDevice_TypeDevice" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_ListPhone_InstallDevice" ManuallyRouted="false" />
+        <AssociationConnector Association="CRM7Model.FK_Subsriber_PassportInfo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

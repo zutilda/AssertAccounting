@@ -7,23 +7,31 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AssertAccounting
+namespace WpfApp1
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class District
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public District()
         {
-            this.Employee = new HashSet<Employee>();
+            this.Adress = new HashSet<Adress>();
+            this.Subsriber = new HashSet<Subsriber>();
         }
     
-        public int IDRole { get; set; }
-        public string NameRole { get; set; }
+        public int ID { get; set; }
+        public int District1 { get; set; }
+        public string Area { get; set; }
+        public int Population { get; set; }
+        public int CountOfMetroStation { get; set; }
+        public int House { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employee { get; set; }
+        public virtual ICollection<Adress> Adress { get; set; }
+        public virtual TypeHouse TypeHouse { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Subsriber> Subsriber { get; set; }
     }
 }

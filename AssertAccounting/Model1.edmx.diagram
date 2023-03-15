@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a09074fb20c54c7e80a988b4a72cea5d" Name="Diagram1">
-        <EntityTypeShape EntityType="CRM7Model.sysdiagrams" Width="1.5" PointX="3.375" PointY="4.25" />
-        <EntityTypeShape EntityType="CRM7Model.Employee" Width="1.5" PointX="7.625" PointY="1" />
-        <EntityTypeShape EntityType="CRM7Model.Role" Width="1.5" PointX="5.375" PointY="1.5" />
+      <Diagram DiagramId="a09074fb20c54c7e80a988b4a72cea5d" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="CRM7Model.Employee" Width="1.5" PointX="5.125" PointY="3.625" />
+        <EntityTypeShape EntityType="CRM7Model.Role" Width="1.5" PointX="5.75" PointY="7.5" />
+        <EntityTypeShape EntityType="CRM7Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" />
         <AssociationConnector Association="CRM7Model.FK_Employee_Role" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

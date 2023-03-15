@@ -1,0 +1,1440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище CRM7Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "41CRM7.dbo.Adress" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Adress">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ConnectionPoint" />
+            <PropertyRef Name="Location" />
+            <PropertyRef Name="District" />
+            <PropertyRef Name="GeoPosition" />
+            <PropertyRef Name="Discriotion" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ConnectionPoint" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="District" Type="int" Nullable="false" />
+          <Property Name="GeoPosition" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Discriotion" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplicationCRM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateCreate" Type="date" Nullable="false" />
+          <Property Name="PersonalAccountUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Service" Type="int" Nullable="false" />
+          <Property Name="KindService" Type="int" Nullable="false" />
+          <Property Name="TypeService" Type="int" Nullable="false" />
+          <Property Name="StatusApplication" Type="int" Nullable="false" />
+          <Property Name="TypeDevice" Type="int" Nullable="false" />
+          <Property Name="DescriptionProblem" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ClisingDate" Type="date" Nullable="false" />
+          <Property Name="TypeProblem" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConectedService">
+          <Key>
+            <PropertyRef Name="IDConnected" />
+          </Key>
+          <Property Name="IDConnected" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Service" Type="int" Nullable="false" />
+          <Property Name="DateConnected" Type="date" Nullable="false" />
+          <Property Name="ConnectedUser" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContractType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="District" Type="int" Nullable="false" />
+          <Property Name="Area" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Population" Type="int" Nullable="false" />
+          <Property Name="CountOfMetroStation" Type="int" Nullable="false" />
+          <Property Name="House" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="IDEmployee" />
+          </Key>
+          <Property Name="IDEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="25" />
+          <Property Name="Role" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="GatewayPhone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameGateway" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InstallDevice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameDevice" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeDevice" Type="int" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="MAC" Type="nvarchar" MaxLength="50" />
+          <Property Name="IP" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDAdress" Type="int" />
+          <Property Name="Gatevay" Type="nvarchar" MaxLength="50" />
+          <Property Name="ListPhone" Type="int" />
+          <Property Name="DateInstalling" Type="date" />
+        </EntityType>
+        <EntityType Name="KindServise">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "41CRM7.dbo.ListPhone" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="ListPhone">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Gateway" />
+            <PropertyRef Name="LinePhone" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Gateway" Type="int" Nullable="false" />
+          <Property Name="LinePhone" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PassportInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Series" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateIssue" Type="date" Nullable="false" />
+          <Property Name="WhomIssue" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PortType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NamePort" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IDRole" />
+          </Key>
+          <Property Name="IDRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameRole" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameServices" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subsriber">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronumic" Type="nvarchar" MaxLength="50" />
+          <Property Name="CodeGender" Type="int" Nullable="false" />
+          <Property Name="IDPassport" Type="int" Nullable="false" />
+          <Property Name="NumberContract" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreateContract" Type="date" Nullable="false" />
+          <Property Name="AdressUser" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FactAdress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="District" Type="int" Nullable="false" />
+          <Property Name="TypeContract" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeDevice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NameType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeHouse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameType" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfProblem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameProblem" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Adress_District">
+          <End Role="District" Type="Self.District" Multiplicity="1" />
+          <End Role="Adress" Type="Self.Adress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Adress">
+              <PropertyRef Name="District" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adress_InstallDevice">
+          <End Role="InstallDevice" Type="Self.InstallDevice" Multiplicity="1" />
+          <End Role="Adress" Type="Self.Adress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InstallDevice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Adress">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCRM_KindServise">
+          <End Role="KindServise" Type="Self.KindServise" Multiplicity="1" />
+          <End Role="ApplicationCRM" Type="Self.ApplicationCRM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindServise">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ApplicationCRM">
+              <PropertyRef Name="KindService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCRM_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="ApplicationCRM" Type="Self.ApplicationCRM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ApplicationCRM">
+              <PropertyRef Name="Service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCRM_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="ApplicationCRM" Type="Self.ApplicationCRM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ApplicationCRM">
+              <PropertyRef Name="StatusApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCRM_TypeDevice">
+          <End Role="TypeDevice" Type="Self.TypeDevice" Multiplicity="1" />
+          <End Role="ApplicationCRM" Type="Self.ApplicationCRM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeDevice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ApplicationCRM">
+              <PropertyRef Name="TypeDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCRM_TypeOfProblem">
+          <End Role="TypeOfProblem" Type="Self.TypeOfProblem" Multiplicity="1" />
+          <End Role="ApplicationCRM" Type="Self.ApplicationCRM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfProblem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ApplicationCRM">
+              <PropertyRef Name="TypeProblem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCRM_TypeService">
+          <End Role="TypeService" Type="Self.TypeService" Multiplicity="1" />
+          <End Role="ApplicationCRM" Type="Self.ApplicationCRM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeService">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ApplicationCRM">
+              <PropertyRef Name="TypeService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConectedService_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="ConectedService" Type="Self.ConectedService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ConectedService">
+              <PropertyRef Name="Service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConectedService_Subsriber">
+          <End Role="Subsriber" Type="Self.Subsriber" Multiplicity="1" />
+          <End Role="ConectedService" Type="Self.ConectedService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subsriber">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ConectedService">
+              <PropertyRef Name="ConnectedUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_TypeHouse">
+          <End Role="TypeHouse" Type="Self.TypeHouse" Multiplicity="1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeHouse">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="House" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IDRole" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstallDevice_PortType">
+          <End Role="PortType" Type="Self.PortType" Multiplicity="1" />
+          <End Role="InstallDevice" Type="Self.InstallDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PortType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InstallDevice">
+              <PropertyRef Name="Port" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstallDevice_TypeDevice">
+          <End Role="TypeDevice" Type="Self.TypeDevice" Multiplicity="1" />
+          <End Role="InstallDevice" Type="Self.InstallDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeDevice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InstallDevice">
+              <PropertyRef Name="TypeDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListPhone_GatewayPhone">
+          <End Role="GatewayPhone" Type="Self.GatewayPhone" Multiplicity="1" />
+          <End Role="ListPhone" Type="Self.ListPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GatewayPhone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ListPhone">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListPhone_InstallDevice">
+          <End Role="InstallDevice" Type="Self.InstallDevice" Multiplicity="1" />
+          <End Role="ListPhone" Type="Self.ListPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InstallDevice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ListPhone">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subsriber_ContractType">
+          <End Role="ContractType" Type="Self.ContractType" Multiplicity="1" />
+          <End Role="Subsriber" Type="Self.Subsriber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContractType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subsriber">
+              <PropertyRef Name="TypeContract" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subsriber_District">
+          <End Role="District" Type="Self.District" Multiplicity="1" />
+          <End Role="Subsriber" Type="Self.Subsriber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subsriber">
+              <PropertyRef Name="District" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subsriber_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Subsriber" Type="Self.Subsriber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subsriber">
+              <PropertyRef Name="CodeGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subsriber_PassportInfo">
+          <End Role="PassportInfo" Type="Self.PassportInfo" Multiplicity="1" />
+          <End Role="Subsriber" Type="Self.Subsriber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassportInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subsriber">
+              <PropertyRef Name="IDPassport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище CRM7ModelContainer">
+          <EntitySet Name="ApplicationCRM" EntityType="Self.ApplicationCRM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConectedService" EntityType="Self.ConectedService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContractType" EntityType="Self.ContractType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GatewayPhone" EntityType="Self.GatewayPhone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InstallDevice" EntityType="Self.InstallDevice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KindServise" EntityType="Self.KindServise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassportInfo" EntityType="Self.PassportInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PortType" EntityType="Self.PortType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subsriber" EntityType="Self.Subsriber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeDevice" EntityType="Self.TypeDevice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeHouse" EntityType="Self.TypeHouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfProblem" EntityType="Self.TypeOfProblem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeService" EntityType="Self.TypeService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Adress" EntityType="Self.Adress" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Adress].[ID] AS [ID], 
+    [Adress].[ConnectionPoint] AS [ConnectionPoint], 
+    [Adress].[Location] AS [Location], 
+    [Adress].[District] AS [District], 
+    [Adress].[GeoPosition] AS [GeoPosition], 
+    [Adress].[Discriotion] AS [Discriotion]
+    FROM [dbo].[Adress] AS [Adress]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ListPhone" EntityType="Self.ListPhone" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ListPhone].[ID] AS [ID], 
+    [ListPhone].[Gateway] AS [Gateway], 
+    [ListPhone].[LinePhone] AS [LinePhone]
+    FROM [dbo].[ListPhone] AS [ListPhone]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Adress_District" Association="Self.FK_Adress_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Adress" EntitySet="Adress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adress_InstallDevice" Association="Self.FK_Adress_InstallDevice">
+            <End Role="InstallDevice" EntitySet="InstallDevice" />
+            <End Role="Adress" EntitySet="Adress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCRM_KindServise" Association="Self.FK_ApplicationCRM_KindServise">
+            <End Role="KindServise" EntitySet="KindServise" />
+            <End Role="ApplicationCRM" EntitySet="ApplicationCRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCRM_Service" Association="Self.FK_ApplicationCRM_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ApplicationCRM" EntitySet="ApplicationCRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCRM_Status" Association="Self.FK_ApplicationCRM_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="ApplicationCRM" EntitySet="ApplicationCRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCRM_TypeDevice" Association="Self.FK_ApplicationCRM_TypeDevice">
+            <End Role="TypeDevice" EntitySet="TypeDevice" />
+            <End Role="ApplicationCRM" EntitySet="ApplicationCRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCRM_TypeOfProblem" Association="Self.FK_ApplicationCRM_TypeOfProblem">
+            <End Role="TypeOfProblem" EntitySet="TypeOfProblem" />
+            <End Role="ApplicationCRM" EntitySet="ApplicationCRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCRM_TypeService" Association="Self.FK_ApplicationCRM_TypeService">
+            <End Role="TypeService" EntitySet="TypeService" />
+            <End Role="ApplicationCRM" EntitySet="ApplicationCRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConectedService_Service" Association="Self.FK_ConectedService_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ConectedService" EntitySet="ConectedService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConectedService_Subsriber" Association="Self.FK_ConectedService_Subsriber">
+            <End Role="Subsriber" EntitySet="Subsriber" />
+            <End Role="ConectedService" EntitySet="ConectedService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_District_TypeHouse" Association="Self.FK_District_TypeHouse">
+            <End Role="TypeHouse" EntitySet="TypeHouse" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstallDevice_PortType" Association="Self.FK_InstallDevice_PortType">
+            <End Role="PortType" EntitySet="PortType" />
+            <End Role="InstallDevice" EntitySet="InstallDevice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstallDevice_TypeDevice" Association="Self.FK_InstallDevice_TypeDevice">
+            <End Role="TypeDevice" EntitySet="TypeDevice" />
+            <End Role="InstallDevice" EntitySet="InstallDevice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListPhone_GatewayPhone" Association="Self.FK_ListPhone_GatewayPhone">
+            <End Role="GatewayPhone" EntitySet="GatewayPhone" />
+            <End Role="ListPhone" EntitySet="ListPhone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListPhone_InstallDevice" Association="Self.FK_ListPhone_InstallDevice">
+            <End Role="InstallDevice" EntitySet="InstallDevice" />
+            <End Role="ListPhone" EntitySet="ListPhone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subsriber_ContractType" Association="Self.FK_Subsriber_ContractType">
+            <End Role="ContractType" EntitySet="ContractType" />
+            <End Role="Subsriber" EntitySet="Subsriber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subsriber_District" Association="Self.FK_Subsriber_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Subsriber" EntitySet="Subsriber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subsriber_Gender" Association="Self.FK_Subsriber_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Subsriber" EntitySet="Subsriber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subsriber_PassportInfo" Association="Self.FK_Subsriber_PassportInfo">
+            <End Role="PassportInfo" EntitySet="PassportInfo" />
+            <End Role="Subsriber" EntitySet="Subsriber" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CRM7Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ApplicationCRM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PersonalAccountUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Service" Type="Int32" Nullable="false" />
+          <Property Name="KindService" Type="Int32" Nullable="false" />
+          <Property Name="TypeService" Type="Int32" Nullable="false" />
+          <Property Name="StatusApplication" Type="Int32" Nullable="false" />
+          <Property Name="TypeDevice" Type="Int32" Nullable="false" />
+          <Property Name="DescriptionProblem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClisingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TypeProblem" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="KindServise" Relationship="Self.FK_ApplicationCRM_KindServise" FromRole="ApplicationCRM" ToRole="KindServise" />
+          <NavigationProperty Name="Service1" Relationship="Self.FK_ApplicationCRM_Service" FromRole="ApplicationCRM" ToRole="Service" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_ApplicationCRM_Status" FromRole="ApplicationCRM" ToRole="Status" />
+          <NavigationProperty Name="TypeDevice1" Relationship="Self.FK_ApplicationCRM_TypeDevice" FromRole="ApplicationCRM" ToRole="TypeDevice" />
+          <NavigationProperty Name="TypeOfProblem" Relationship="Self.FK_ApplicationCRM_TypeOfProblem" FromRole="ApplicationCRM" ToRole="TypeOfProblem" />
+          <NavigationProperty Name="TypeService1" Relationship="Self.FK_ApplicationCRM_TypeService" FromRole="ApplicationCRM" ToRole="TypeService" />
+        </EntityType>
+        <EntityType Name="ConectedService">
+          <Key>
+            <PropertyRef Name="IDConnected" />
+          </Key>
+          <Property Name="IDConnected" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Service" Type="Int32" Nullable="false" />
+          <Property Name="DateConnected" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ConnectedUser" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Service1" Relationship="Self.FK_ConectedService_Service" FromRole="ConectedService" ToRole="Service" />
+          <NavigationProperty Name="Subsriber" Relationship="Self.FK_ConectedService_Subsriber" FromRole="ConectedService" ToRole="Subsriber" />
+        </EntityType>
+        <EntityType Name="ContractType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Subsriber" Relationship="Self.FK_Subsriber_ContractType" FromRole="ContractType" ToRole="Subsriber" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="District1" Type="Int32" Nullable="false" />
+          <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Population" Type="Int32" Nullable="false" />
+          <Property Name="CountOfMetroStation" Type="Int32" Nullable="false" />
+          <Property Name="House" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Adress" Relationship="Self.FK_Adress_District" FromRole="District" ToRole="Adress" />
+          <NavigationProperty Name="TypeHouse" Relationship="Self.FK_District_TypeHouse" FromRole="District" ToRole="TypeHouse" />
+          <NavigationProperty Name="Subsriber" Relationship="Self.FK_Subsriber_District" FromRole="District" ToRole="Subsriber" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="IDEmployee" />
+          </Key>
+          <Property Name="IDEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role1" Relationship="Self.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="GatewayPhone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameGateway" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ListPhone" Relationship="Self.FK_ListPhone_GatewayPhone" FromRole="GatewayPhone" ToRole="ListPhone" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gender1" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Subsriber" Relationship="Self.FK_Subsriber_Gender" FromRole="Gender" ToRole="Subsriber" />
+        </EntityType>
+        <EntityType Name="InstallDevice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameDevice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeDevice" Type="Int32" Nullable="false" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="Int32" Nullable="false" />
+          <Property Name="MAC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDAdress" Type="Int32" />
+          <Property Name="Gatevay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ListPhone" Type="Int32" />
+          <Property Name="DateInstalling" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Adress" Relationship="Self.FK_Adress_InstallDevice" FromRole="InstallDevice" ToRole="Adress" />
+          <NavigationProperty Name="PortType" Relationship="Self.FK_InstallDevice_PortType" FromRole="InstallDevice" ToRole="PortType" />
+          <NavigationProperty Name="TypeDevice1" Relationship="Self.FK_InstallDevice_TypeDevice" FromRole="InstallDevice" ToRole="TypeDevice" />
+          <NavigationProperty Name="ListPhone1" Relationship="Self.FK_ListPhone_InstallDevice" FromRole="InstallDevice" ToRole="ListPhone" />
+        </EntityType>
+        <EntityType Name="KindServise">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ApplicationCRM" Relationship="Self.FK_ApplicationCRM_KindServise" FromRole="KindServise" ToRole="ApplicationCRM" />
+        </EntityType>
+        <EntityType Name="PassportInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Series" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateIssue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="WhomIssue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Subsriber" Relationship="Self.FK_Subsriber_PassportInfo" FromRole="PassportInfo" ToRole="Subsriber" />
+        </EntityType>
+        <EntityType Name="PortType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NamePort" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="InstallDevice" Relationship="Self.FK_InstallDevice_PortType" FromRole="PortType" ToRole="InstallDevice" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IDRole" />
+          </Key>
+          <Property Name="IDRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameServices" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ApplicationCRM" Relationship="Self.FK_ApplicationCRM_Service" FromRole="Service" ToRole="ApplicationCRM" />
+          <NavigationProperty Name="ConectedService" Relationship="Self.FK_ConectedService_Service" FromRole="Service" ToRole="ConectedService" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ApplicationCRM" Relationship="Self.FK_ApplicationCRM_Status" FromRole="Status" ToRole="ApplicationCRM" />
+        </EntityType>
+        <EntityType Name="Subsriber">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronumic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CodeGender" Type="Int32" Nullable="false" />
+          <Property Name="IDPassport" Type="Int32" Nullable="false" />
+          <Property Name="NumberContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreateContract" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AdressUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FactAdress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="District" Type="Int32" Nullable="false" />
+          <Property Name="TypeContract" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ConectedService" Relationship="Self.FK_ConectedService_Subsriber" FromRole="Subsriber" ToRole="ConectedService" />
+          <NavigationProperty Name="ContractType" Relationship="Self.FK_Subsriber_ContractType" FromRole="Subsriber" ToRole="ContractType" />
+          <NavigationProperty Name="District1" Relationship="Self.FK_Subsriber_District" FromRole="Subsriber" ToRole="District" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Subsriber_Gender" FromRole="Subsriber" ToRole="Gender" />
+          <NavigationProperty Name="PassportInfo" Relationship="Self.FK_Subsriber_PassportInfo" FromRole="Subsriber" ToRole="PassportInfo" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeDevice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NameType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ApplicationCRM" Relationship="Self.FK_ApplicationCRM_TypeDevice" FromRole="TypeDevice" ToRole="ApplicationCRM" />
+          <NavigationProperty Name="InstallDevice" Relationship="Self.FK_InstallDevice_TypeDevice" FromRole="TypeDevice" ToRole="InstallDevice" />
+        </EntityType>
+        <EntityType Name="TypeHouse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="District" Relationship="Self.FK_District_TypeHouse" FromRole="TypeHouse" ToRole="District" />
+        </EntityType>
+        <EntityType Name="TypeOfProblem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameProblem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ApplicationCRM" Relationship="Self.FK_ApplicationCRM_TypeOfProblem" FromRole="TypeOfProblem" ToRole="ApplicationCRM" />
+        </EntityType>
+        <EntityType Name="TypeService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ApplicationCRM" Relationship="Self.FK_ApplicationCRM_TypeService" FromRole="TypeService" ToRole="ApplicationCRM" />
+        </EntityType>
+        <EntityType Name="Adress">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ConnectionPoint" />
+            <PropertyRef Name="Location" />
+            <PropertyRef Name="District" />
+            <PropertyRef Name="GeoPosition" />
+            <PropertyRef Name="Discriotion" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ConnectionPoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="District" Type="Int32" Nullable="false" />
+          <Property Name="GeoPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Discriotion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="District1" Relationship="Self.FK_Adress_District" FromRole="Adress" ToRole="District" />
+          <NavigationProperty Name="InstallDevice" Relationship="Self.FK_Adress_InstallDevice" FromRole="Adress" ToRole="InstallDevice" />
+        </EntityType>
+        <EntityType Name="ListPhone">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Gateway" />
+            <PropertyRef Name="LinePhone" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Gateway" Type="Int32" Nullable="false" />
+          <Property Name="LinePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GatewayPhone" Relationship="Self.FK_ListPhone_GatewayPhone" FromRole="ListPhone" ToRole="GatewayPhone" />
+          <NavigationProperty Name="InstallDevice" Relationship="Self.FK_ListPhone_InstallDevice" FromRole="ListPhone" ToRole="InstallDevice" />
+        </EntityType>
+        <Association Name="FK_ApplicationCRM_KindServise">
+          <End Role="KindServise" Type="Self.KindServise" Multiplicity="1" />
+          <End Role="ApplicationCRM" Type="Self.ApplicationCRM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindServise">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ApplicationCRM">
+              <PropertyRef Name="KindService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCRM_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="ApplicationCRM" Type="Self.ApplicationCRM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ApplicationCRM">
+              <PropertyRef Name="Service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCRM_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="ApplicationCRM" Type="Self.ApplicationCRM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ApplicationCRM">
+              <PropertyRef Name="StatusApplication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCRM_TypeDevice">
+          <End Role="TypeDevice" Type="Self.TypeDevice" Multiplicity="1" />
+          <End Role="ApplicationCRM" Type="Self.ApplicationCRM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeDevice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ApplicationCRM">
+              <PropertyRef Name="TypeDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCRM_TypeOfProblem">
+          <End Role="TypeOfProblem" Type="Self.TypeOfProblem" Multiplicity="1" />
+          <End Role="ApplicationCRM" Type="Self.ApplicationCRM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfProblem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ApplicationCRM">
+              <PropertyRef Name="TypeProblem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCRM_TypeService">
+          <End Role="TypeService" Type="Self.TypeService" Multiplicity="1" />
+          <End Role="ApplicationCRM" Type="Self.ApplicationCRM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeService">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ApplicationCRM">
+              <PropertyRef Name="TypeService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConectedService_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="ConectedService" Type="Self.ConectedService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ConectedService">
+              <PropertyRef Name="Service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConectedService_Subsriber">
+          <End Role="Subsriber" Type="Self.Subsriber" Multiplicity="1" />
+          <End Role="ConectedService" Type="Self.ConectedService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subsriber">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ConectedService">
+              <PropertyRef Name="ConnectedUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subsriber_ContractType">
+          <End Role="ContractType" Type="Self.ContractType" Multiplicity="1" />
+          <End Role="Subsriber" Type="Self.Subsriber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContractType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subsriber">
+              <PropertyRef Name="TypeContract" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adress_District">
+          <End Role="District" Type="Self.District" Multiplicity="1" />
+          <End Role="Adress" Type="Self.Adress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Adress">
+              <PropertyRef Name="District" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_TypeHouse">
+          <End Role="TypeHouse" Type="Self.TypeHouse" Multiplicity="1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeHouse">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="House" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subsriber_District">
+          <End Role="District" Type="Self.District" Multiplicity="1" />
+          <End Role="Subsriber" Type="Self.Subsriber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subsriber">
+              <PropertyRef Name="District" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IDRole" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListPhone_GatewayPhone">
+          <End Role="GatewayPhone" Type="Self.GatewayPhone" Multiplicity="1" />
+          <End Role="ListPhone" Type="Self.ListPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GatewayPhone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ListPhone">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subsriber_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Subsriber" Type="Self.Subsriber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subsriber">
+              <PropertyRef Name="CodeGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adress_InstallDevice">
+          <End Role="InstallDevice" Type="Self.InstallDevice" Multiplicity="1" />
+          <End Role="Adress" Type="Self.Adress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InstallDevice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Adress">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstallDevice_PortType">
+          <End Role="PortType" Type="Self.PortType" Multiplicity="1" />
+          <End Role="InstallDevice" Type="Self.InstallDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PortType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InstallDevice">
+              <PropertyRef Name="Port" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstallDevice_TypeDevice">
+          <End Role="TypeDevice" Type="Self.TypeDevice" Multiplicity="1" />
+          <End Role="InstallDevice" Type="Self.InstallDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeDevice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InstallDevice">
+              <PropertyRef Name="TypeDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListPhone_InstallDevice">
+          <End Role="InstallDevice" Type="Self.InstallDevice" Multiplicity="1" />
+          <End Role="ListPhone" Type="Self.ListPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InstallDevice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ListPhone">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subsriber_PassportInfo">
+          <End Role="PassportInfo" Type="Self.PassportInfo" Multiplicity="1" />
+          <End Role="Subsriber" Type="Self.Subsriber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassportInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subsriber">
+              <PropertyRef Name="IDPassport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplicationCRM" EntityType="Self.ApplicationCRM" />
+          <EntitySet Name="ConectedService" EntityType="Self.ConectedService" />
+          <EntitySet Name="ContractType" EntityType="Self.ContractType" />
+          <EntitySet Name="District" EntityType="Self.District" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="GatewayPhone" EntityType="Self.GatewayPhone" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="InstallDevice" EntityType="Self.InstallDevice" />
+          <EntitySet Name="KindServise" EntityType="Self.KindServise" />
+          <EntitySet Name="PassportInfo" EntityType="Self.PassportInfo" />
+          <EntitySet Name="PortType" EntityType="Self.PortType" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="Subsriber" EntityType="Self.Subsriber" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TypeDevice" EntityType="Self.TypeDevice" />
+          <EntitySet Name="TypeHouse" EntityType="Self.TypeHouse" />
+          <EntitySet Name="TypeOfProblem" EntityType="Self.TypeOfProblem" />
+          <EntitySet Name="TypeService" EntityType="Self.TypeService" />
+          <EntitySet Name="Adress" EntityType="Self.Adress" />
+          <EntitySet Name="ListPhone" EntityType="Self.ListPhone" />
+          <AssociationSet Name="FK_ApplicationCRM_KindServise" Association="Self.FK_ApplicationCRM_KindServise">
+            <End Role="KindServise" EntitySet="KindServise" />
+            <End Role="ApplicationCRM" EntitySet="ApplicationCRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCRM_Service" Association="Self.FK_ApplicationCRM_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ApplicationCRM" EntitySet="ApplicationCRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCRM_Status" Association="Self.FK_ApplicationCRM_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="ApplicationCRM" EntitySet="ApplicationCRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCRM_TypeDevice" Association="Self.FK_ApplicationCRM_TypeDevice">
+            <End Role="TypeDevice" EntitySet="TypeDevice" />
+            <End Role="ApplicationCRM" EntitySet="ApplicationCRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCRM_TypeOfProblem" Association="Self.FK_ApplicationCRM_TypeOfProblem">
+            <End Role="TypeOfProblem" EntitySet="TypeOfProblem" />
+            <End Role="ApplicationCRM" EntitySet="ApplicationCRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCRM_TypeService" Association="Self.FK_ApplicationCRM_TypeService">
+            <End Role="TypeService" EntitySet="TypeService" />
+            <End Role="ApplicationCRM" EntitySet="ApplicationCRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConectedService_Service" Association="Self.FK_ConectedService_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ConectedService" EntitySet="ConectedService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConectedService_Subsriber" Association="Self.FK_ConectedService_Subsriber">
+            <End Role="Subsriber" EntitySet="Subsriber" />
+            <End Role="ConectedService" EntitySet="ConectedService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subsriber_ContractType" Association="Self.FK_Subsriber_ContractType">
+            <End Role="ContractType" EntitySet="ContractType" />
+            <End Role="Subsriber" EntitySet="Subsriber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adress_District" Association="Self.FK_Adress_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Adress" EntitySet="Adress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_District_TypeHouse" Association="Self.FK_District_TypeHouse">
+            <End Role="TypeHouse" EntitySet="TypeHouse" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subsriber_District" Association="Self.FK_Subsriber_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Subsriber" EntitySet="Subsriber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListPhone_GatewayPhone" Association="Self.FK_ListPhone_GatewayPhone">
+            <End Role="GatewayPhone" EntitySet="GatewayPhone" />
+            <End Role="ListPhone" EntitySet="ListPhone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subsriber_Gender" Association="Self.FK_Subsriber_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Subsriber" EntitySet="Subsriber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adress_InstallDevice" Association="Self.FK_Adress_InstallDevice">
+            <End Role="InstallDevice" EntitySet="InstallDevice" />
+            <End Role="Adress" EntitySet="Adress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstallDevice_PortType" Association="Self.FK_InstallDevice_PortType">
+            <End Role="PortType" EntitySet="PortType" />
+            <End Role="InstallDevice" EntitySet="InstallDevice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstallDevice_TypeDevice" Association="Self.FK_InstallDevice_TypeDevice">
+            <End Role="TypeDevice" EntitySet="TypeDevice" />
+            <End Role="InstallDevice" EntitySet="InstallDevice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListPhone_InstallDevice" Association="Self.FK_ListPhone_InstallDevice">
+            <End Role="InstallDevice" EntitySet="InstallDevice" />
+            <End Role="ListPhone" EntitySet="ListPhone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subsriber_PassportInfo" Association="Self.FK_Subsriber_PassportInfo">
+            <End Role="PassportInfo" EntitySet="PassportInfo" />
+            <End Role="Subsriber" EntitySet="Subsriber" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CRM7ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="ApplicationCRM">
+            <EntityTypeMapping TypeName="CRM7Model.ApplicationCRM">
+              <MappingFragment StoreEntitySet="ApplicationCRM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="PersonalAccountUser" ColumnName="PersonalAccountUser" />
+                <ScalarProperty Name="Service" ColumnName="Service" />
+                <ScalarProperty Name="KindService" ColumnName="KindService" />
+                <ScalarProperty Name="TypeService" ColumnName="TypeService" />
+                <ScalarProperty Name="StatusApplication" ColumnName="StatusApplication" />
+                <ScalarProperty Name="TypeDevice" ColumnName="TypeDevice" />
+                <ScalarProperty Name="DescriptionProblem" ColumnName="DescriptionProblem" />
+                <ScalarProperty Name="ClisingDate" ColumnName="ClisingDate" />
+                <ScalarProperty Name="TypeProblem" ColumnName="TypeProblem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConectedService">
+            <EntityTypeMapping TypeName="CRM7Model.ConectedService">
+              <MappingFragment StoreEntitySet="ConectedService">
+                <ScalarProperty Name="IDConnected" ColumnName="IDConnected" />
+                <ScalarProperty Name="Service" ColumnName="Service" />
+                <ScalarProperty Name="DateConnected" ColumnName="DateConnected" />
+                <ScalarProperty Name="ConnectedUser" ColumnName="ConnectedUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContractType">
+            <EntityTypeMapping TypeName="CRM7Model.ContractType">
+              <MappingFragment StoreEntitySet="ContractType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameType" ColumnName="NameType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="District">
+            <EntityTypeMapping TypeName="CRM7Model.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="District1" ColumnName="District" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Population" ColumnName="Population" />
+                <ScalarProperty Name="CountOfMetroStation" ColumnName="CountOfMetroStation" />
+                <ScalarProperty Name="House" ColumnName="House" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="CRM7Model.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="IDEmployee" ColumnName="IDEmployee" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GatewayPhone">
+            <EntityTypeMapping TypeName="CRM7Model.GatewayPhone">
+              <MappingFragment StoreEntitySet="GatewayPhone">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameGateway" ColumnName="NameGateway" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="CRM7Model.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Gender1" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InstallDevice">
+            <EntityTypeMapping TypeName="CRM7Model.InstallDevice">
+              <MappingFragment StoreEntitySet="InstallDevice">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameDevice" ColumnName="NameDevice" />
+                <ScalarProperty Name="TypeDevice" ColumnName="TypeDevice" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="IDAdress" ColumnName="IDAdress" />
+                <ScalarProperty Name="Gatevay" ColumnName="Gatevay" />
+                <ScalarProperty Name="ListPhone" ColumnName="ListPhone" />
+                <ScalarProperty Name="DateInstalling" ColumnName="DateInstalling" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KindServise">
+            <EntityTypeMapping TypeName="CRM7Model.KindServise">
+              <MappingFragment StoreEntitySet="KindServise">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassportInfo">
+            <EntityTypeMapping TypeName="CRM7Model.PassportInfo">
+              <MappingFragment StoreEntitySet="PassportInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="DateIssue" ColumnName="DateIssue" />
+                <ScalarProperty Name="WhomIssue" ColumnName="WhomIssue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PortType">
+            <EntityTypeMapping TypeName="CRM7Model.PortType">
+              <MappingFragment StoreEntitySet="PortType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NamePort" ColumnName="NamePort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="CRM7Model.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+                <ScalarProperty Name="NameRole" ColumnName="NameRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="CRM7Model.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameServices" ColumnName="NameServices" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="CRM7Model.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameStatus" ColumnName="NameStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subsriber">
+            <EntityTypeMapping TypeName="CRM7Model.Subsriber">
+              <MappingFragment StoreEntitySet="Subsriber">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronumic" ColumnName="Patronumic" />
+                <ScalarProperty Name="CodeGender" ColumnName="CodeGender" />
+                <ScalarProperty Name="IDPassport" ColumnName="IDPassport" />
+                <ScalarProperty Name="NumberContract" ColumnName="NumberContract" />
+                <ScalarProperty Name="DateCreateContract" ColumnName="DateCreateContract" />
+                <ScalarProperty Name="AdressUser" ColumnName="AdressUser" />
+                <ScalarProperty Name="FactAdress" ColumnName="FactAdress" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="TypeContract" ColumnName="TypeContract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CRM7Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeDevice">
+            <EntityTypeMapping TypeName="CRM7Model.TypeDevice">
+              <MappingFragment StoreEntitySet="TypeDevice">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameType" ColumnName="NameType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeHouse">
+            <EntityTypeMapping TypeName="CRM7Model.TypeHouse">
+              <MappingFragment StoreEntitySet="TypeHouse">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameType" ColumnName="NameType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfProblem">
+            <EntityTypeMapping TypeName="CRM7Model.TypeOfProblem">
+              <MappingFragment StoreEntitySet="TypeOfProblem">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameProblem" ColumnName="NameProblem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeService">
+            <EntityTypeMapping TypeName="CRM7Model.TypeService">
+              <MappingFragment StoreEntitySet="TypeService">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameType" ColumnName="NameType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adress">
+            <EntityTypeMapping TypeName="CRM7Model.Adress">
+              <MappingFragment StoreEntitySet="Adress">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ConnectionPoint" ColumnName="ConnectionPoint" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="GeoPosition" ColumnName="GeoPosition" />
+                <ScalarProperty Name="Discriotion" ColumnName="Discriotion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListPhone">
+            <EntityTypeMapping TypeName="CRM7Model.ListPhone">
+              <MappingFragment StoreEntitySet="ListPhone">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Gateway" ColumnName="Gateway" />
+                <ScalarProperty Name="LinePhone" ColumnName="LinePhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

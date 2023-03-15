@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AssertAccounting
+namespace WpfApp1
 {
     using System;
     using System.Collections.Generic;

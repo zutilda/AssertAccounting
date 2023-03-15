@@ -7,22 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AssertAccounting
+namespace WpfApp1
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class ConectedService
     {
-        public int IDEmployee { get; set; }
-        public string Surname { get; set; }
-        public string Name { get; set; }
-        public string Patronymic { get; set; }
-        public int Role { get; set; }
-        public string Phone { get; set; }
-        public string Password { get; set; }
-        public string Photo { get; set; }
+        public int IDConnected { get; set; }
+        public int Service { get; set; }
+        public System.DateTime DateConnected { get; set; }
+        public int ConnectedUser { get; set; }
     
-        public virtual Role Role1 { get; set; }
+        public virtual Service Service1 { get; set; }
+        public virtual Subsriber Subsriber { get; set; }
     }
 }

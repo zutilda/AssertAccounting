@@ -7,23 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AssertAccounting
+namespace WpfApp1
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class Service
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public Service()
         {
-            this.Employee = new HashSet<Employee>();
+            this.ApplicationCRM = new HashSet<ApplicationCRM>();
+            this.ConectedService = new HashSet<ConectedService>();
         }
     
-        public int IDRole { get; set; }
-        public string NameRole { get; set; }
+        public int ID { get; set; }
+        public string NameServices { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employee { get; set; }
+        public virtual ICollection<ApplicationCRM> ApplicationCRM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ConectedService> ConectedService { get; set; }
     }
 }

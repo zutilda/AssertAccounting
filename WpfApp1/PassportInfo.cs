@@ -7,23 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AssertAccounting
+namespace WpfApp1
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class PassportInfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public PassportInfo()
         {
-            this.Employee = new HashSet<Employee>();
+            this.Subsriber = new HashSet<Subsriber>();
         }
     
-        public int IDRole { get; set; }
-        public string NameRole { get; set; }
+        public int ID { get; set; }
+        public string Series { get; set; }
+        public string Number { get; set; }
+        public System.DateTime DateIssue { get; set; }
+        public string WhomIssue { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employee { get; set; }
+        public virtual ICollection<Subsriber> Subsriber { get; set; }
     }
 }

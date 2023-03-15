@@ -34,11 +34,13 @@ namespace AssertAccounting
             time--;
             Time.Text = "До окончания действия кода " + time + " с";
 
+
             if (time == 0)
             {
                 Timer.Stop();
                 Time.Text = "";
                 Code.Clear();
+                GenereteCode.IsEnabled = true;
             }
         }
         private void Number_KeyDown(object sender, KeyEventArgs e)
@@ -49,7 +51,7 @@ namespace AssertAccounting
                 {
                     try
                     {
-                        List<Employee> employees = DB.Employee.Where(x => x.phone == Number.Text).ToList();
+                        List<Employee> employees = DB.Employee.Where(x => x.Phone == Number.Text).ToList();
                         if (employees.Count != 0)
                         {
                             Password.IsEnabled = true;
@@ -57,7 +59,8 @@ namespace AssertAccounting
                         }
                         else
                         {
-                            MessageBox.Show("Код не найден");
+                            MessageBox.Show("Номер не найден");
+                            Number.Clear();
                             return;
                         }
                     }
@@ -84,21 +87,22 @@ namespace AssertAccounting
                 {
                     try
                     {
-                        List<Employee> employees = DB.Employee.Where(x => x.phone == Number.Text && x.password == Password.Password).ToList();
+                        List<Employee> employees = DB.Employee.Where(x => x.Phone == Number.Text && x.Password == Password.Password).ToList();
 
                         if (employees.Count != 0)
                         {
                             Code.IsEnabled = true;
                             Password.IsEnabled = false;
                             Number.IsEnabled = false; 
-                            Captha captha = new Captha();
-                            captha.ShowDialog();
+                            Captha captha = new Captha();                          
+                            captha.ShowDialog();                           
                             Code.Focus();
                             Entrance.IsEnabled = true;
                          }
                         else
                         {
                             MessageBox.Show("Пароль не найден");
+                            Password.Clear();
                             return;
                         }
                     }
@@ -132,17 +136,16 @@ namespace AssertAccounting
         {
             if (CAPTHA == Code.Text)
             {
-                Employee employees = DB.Employee.FirstOrDefault(x => x.phone == Number.Text && x.role == x.Role1.idRole);
-                MessageBox.Show(employees.Role1.nameRole);
+                Employee employees = DB.Employee.FirstOrDefault(x => x.Phone == Number.Text && x.Role == x.Role1.IDRole);
+                MessageBox.Show(employees.Role1.NameRole);
                 Timer.Stop();
                 Time.Text = "";
                 Cancel_Click(sender, e);
             }
             else
             {
-                MessageBox.Show("Вы неправильно ввели код!");
+                MessageBox.Show("Вы неправильно ввели код!");             
                 Code.Clear();
-                GenereteCode.IsEnabled = true;
             }
         }
         private void GenereteCode_Click(object sender, RoutedEventArgs e)
@@ -151,14 +154,10 @@ namespace AssertAccounting
             Code.IsEnabled = true;
             Password.IsEnabled = false;
             Number.IsEnabled = false;
-
+            Captha captha = new Captha();
+            captha.ShowDialog();
             Code.Focus();
-        }
-
-        private void Entrance_KeyDown(object sender, KeyEventArgs e)
-        {
-            
-        }
+        }               
 
         private void StackPanel_KeyDown(object sender, KeyEventArgs e)
         {
